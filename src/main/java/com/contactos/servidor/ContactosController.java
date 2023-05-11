@@ -15,9 +15,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 
-
 @RestController
-public class ContactoController {
+public class ContactosController {
 
     //Devuelve una lista con todos los contactos de la agenda
     @GetMapping("/contactos")
