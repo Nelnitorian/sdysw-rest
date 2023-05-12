@@ -1,15 +1,15 @@
-package com.contactos.bbdd;
+package com.contactos.common;
 
 public class Contacto {
 
-    private final long id;
+    private final int id;
     private final String nombre;
     private final String apellidos;
     private final String email;
     private final String tlf;
 
 
-    public Contacto(long id, String nombre, String apellidos, String email, String tlf) {
+    public Contacto(int id, String nombre, String apellidos, String email, String tlf) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
