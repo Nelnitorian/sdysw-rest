@@ -72,7 +72,7 @@ public class ContactosController {
 
         
         //Gestionamos la respuesta HTTP
-        if (contacto == null) {
+        if (contacto_creado == null) {
             System.out.println("No se ha podido añadir el contacto.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -96,12 +96,12 @@ public class ContactosController {
         Contacto contacto_actualizado = conDAO.actualiza(contacto);
 
         //Gestionamos la respuesta HTTP
-        if (contacto == null) {
+        if (contacto_actualizado == null) {
             System.out.println("No se ha podido editar el contacto.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            System.out.println("Editado satisfactoriamente el contacto con id: " + contacto.getId());
-            return new ResponseEntity<>(contacto, HttpStatus.OK);
+            System.out.println("Editado satisfactoriamente el contacto con id: " + contacto_actualizado.getId());
+            return new ResponseEntity<>(contacto_actualizado, HttpStatus.OK);
         }
     }
 

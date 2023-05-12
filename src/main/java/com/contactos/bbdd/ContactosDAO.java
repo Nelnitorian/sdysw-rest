@@ -67,14 +67,14 @@ public class ContactosDAO implements IContactosDAO{
     }
 
     public Contacto actualiza(Contacto persona) throws SQLException{
-        final String QUERY_ACTUALIZA = "UPDATE "+TABLE+" SET (nombre, apellidos, email, telefono) VALUES (?, ?, ?, ?) WHERE id =?";
+        final String QUERY_ACTUALIZA = "UPDATE "+TABLE+" SET nombre = ?, apellidos = ?, email = ?, telefono = ? WHERE id = ?";
 
         Connection conn = null;
         PreparedStatement st = null;
 
         conn = Conexion.conecta();
         st = conn.prepareStatement(QUERY_ACTUALIZA);
-        st.setString(1, persona.getNombre().toString());
+        st.setString(1, persona.getNombre());
         st.setString(2, persona.getApellidos());
         st.setString(3, persona.getEmail());
         st.setString(4, persona.getTlf());
