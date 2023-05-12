@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS contactos;
 CREATE TABLE contactos (
-    id INT AUTO_INCREMENT, 
+    id SERIAL, 
     nombre VARCHAR(50) NOT NULL, 
     apellidos VARCHAR(50), 
     email VARCHAR(50),
