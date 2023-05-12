@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.contactos.bbdd.ContactosDAO;
@@ -42,7 +43,7 @@ public class ContactosController {
 
     //Devuelve un contacto según su id
     @GetMapping("/contactos/{id}")
-    public ResponseEntity<Contacto> getContacto(@RequestParam(value = "id", defaultValue = "0") int id) throws SQLException {
+    public ResponseEntity<Contacto> getContacto(@PathVariable(value = "id") int id) throws SQLException {
 
         //Consulta a la bbdd
         Contacto contacto = conDAO.lee(id);
@@ -62,30 +63,37 @@ public class ContactosController {
     public ResponseEntity<Contacto> addContacto(@RequestParam(value = "nombre", defaultValue = "Nombre") String nombre,
             @RequestParam(value = "apellidos", defaultValue = "Apellidos") String apellidos,
             @RequestParam(value = "email", defaultValue = "Email") String email,
-            @RequestParam(value = "tlf", defaultValue = "Tlf") String tlf) {
+            @RequestParam(value = "tlf", defaultValue = "Tlf") String tlf) throws SQLException {
+
+        Contacto contacto = new Contacto(-1, nombre, apellidos, email, tlf);
 
         //Consulta a la bbdd
-        Contacto contacto = addContacto(nombre, apellidos, email, tlf);
+        Contacto contacto_creado = conDAO.crea(contacto);
 
+        
         //Gestionamos la respuesta HTTP
         if (contacto == null) {
             System.out.println("No se ha podido añadir el contacto.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            System.out.println("Añadido satisfactoriamente el contacto con id: " + contacto.getId());
-            return new ResponseEntity<>(contacto, HttpStatus.OK);
+            System.out.println("Añadido satisfactoriamente el contacto con id: " + contacto_creado.getId());
+            return new ResponseEntity<>(contacto_creado, HttpStatus.OK);
         }
-    }
+}
 
     //Edita un contacto de la agenda
     @PutMapping("/contactos/{id}")
-    public ResponseEntity<Contacto> updateContacto(@RequestParam(value = "nombre", defaultValue = "Nombre") String nombre,
-            @RequestParam(value = "apellidos", defaultValue = "Apellidos") String apellidos,
-            @RequestParam(value = "email", defaultValue = "Email") String email,
-            @RequestParam(value = "tlf", defaultValue = "Tlf") String tlf) {
+    public ResponseEntity<Contacto> updateContacto(
+        @PathVariable(value = "id") int id,
+        @RequestParam(value = "nombre", defaultValue = "Nombre") String nombre,
+        @RequestParam(value = "apellidos", defaultValue = "Apellidos") String apellidos,
+        @RequestParam(value = "email", defaultValue = "Email") String email,
+        @RequestParam(value = "tlf", defaultValue = "Tlf") String tlf) throws SQLException {
+
+        Contacto contacto = new Contacto(id, nombre, apellidos, email, tlf);
 
         //Consulta a la bbdd
-        Contacto contacto = updateContacto(nombre, apellidos, email, tlf);
+        Contacto contacto_actualizado = conDAO.actualiza(contacto);
 
         //Gestionamos la respuesta HTTP
         if (contacto == null) {
@@ -99,18 +107,19 @@ public class ContactosController {
 
     //Elimina un contacto de la agenda
     @DeleteMapping("/contactos/{id}")
-    public ResponseEntity<Contacto> deleteContacto(@RequestParam(value = "id", defaultValue = "0") long id) {
-
-        //Consulta a la bbdd
-        Contacto contacto = deleteContacto(id);
+    public ResponseEntity<Contacto> deleteContacto(@PathVariable(value = "id") int id) {
 
         //Gestionamos la respuesta HTTP
-        if (contacto == null) {
+        try{
+            //Consulta a la bbdd
+            conDAO.borra(id);
+
+            System.out.println("Eliminado satisfactoriamente el contacto con id: " + id);
+            return new ResponseEntity<>(HttpStatus.OK);
+
+        } catch (SQLException e){
             System.out.println("No se ha podido eliminar el contacto.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            System.out.println("Eliminado satisfactoriamente el contacto con id: " + contacto.getId());
-            return new ResponseEntity<>(contacto, HttpStatus.OK);
         }
     }
 
