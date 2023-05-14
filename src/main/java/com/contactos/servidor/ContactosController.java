@@ -14,6 +14,8 @@ import com.contactos.common.Contacto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class ContactosController {
     ContactosDAO conDAO = new ContactosDAO();
 
     //Devuelve una lista con todos los contactos de la agenda
+    @CrossOrigin(origins = "*")
     @GetMapping("/contactos")
     public ResponseEntity<List<Contacto>> getTodos() throws SQLException {
 
@@ -42,6 +45,7 @@ public class ContactosController {
     }
 
     //Devuelve un contacto según su id
+    @CrossOrigin(origins = "*")
     @GetMapping("/contactos/{id}")
     public ResponseEntity<Contacto> getContacto(@PathVariable(value = "id") int id) throws SQLException {
 
@@ -59,6 +63,7 @@ public class ContactosController {
     }
 
     //Añade un contacto a la agenda
+    @CrossOrigin(origins = "*")
     @PostMapping("/contactos")
     public ResponseEntity<Contacto> addContacto(@RequestParam(value = "nombre", defaultValue = "Nombre") String nombre,
             @RequestParam(value = "apellidos", defaultValue = "Apellidos") String apellidos,
@@ -82,6 +87,7 @@ public class ContactosController {
 }
 
     //Edita un contacto de la agenda
+    @CrossOrigin(origins = "*")
     @PutMapping("/contactos/{id}")
     public ResponseEntity<Contacto> updateContacto(
         @PathVariable(value = "id") int id,
@@ -106,6 +112,7 @@ public class ContactosController {
     }
 
     //Elimina un contacto de la agenda
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/contactos/{id}")
     public ResponseEntity<Contacto> deleteContacto(@PathVariable(value = "id") int id) {
 
