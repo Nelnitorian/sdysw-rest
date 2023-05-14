@@ -66,9 +66,9 @@ public class ContactosController {
     @CrossOrigin(origins = "*")
     @PostMapping("/contactos")
     public ResponseEntity<Contacto> addContacto(@RequestParam(value = "nombre", defaultValue = "Nombre") String nombre,
-            @RequestParam(value = "apellidos", defaultValue = "Apellidos") String apellidos,
-            @RequestParam(value = "email", defaultValue = "Email") String email,
-            @RequestParam(value = "tlf", defaultValue = "Tlf") String tlf) throws SQLException {
+            @RequestParam(value = "apellidos") String apellidos,
+            @RequestParam(value = "email") String email,
+            @RequestParam(value = "tlf") String tlf) throws SQLException {
 
         Contacto contacto = new Contacto(-1, nombre, apellidos, email, tlf);
 
@@ -91,10 +91,10 @@ public class ContactosController {
     @PutMapping("/contactos/{id}")
     public ResponseEntity<Contacto> updateContacto(
         @PathVariable(value = "id") int id,
-        @RequestParam(value = "nombre", defaultValue = "Nombre") String nombre,
-        @RequestParam(value = "apellidos", defaultValue = "Apellidos") String apellidos,
-        @RequestParam(value = "email", defaultValue = "Email") String email,
-        @RequestParam(value = "tlf", defaultValue = "Tlf") String tlf) throws SQLException {
+        @RequestParam(value = "nombre") String nombre,
+        @RequestParam(value = "apellidos") String apellidos,
+        @RequestParam(value = "email") String email,
+        @RequestParam(value = "tlf") String tlf) throws SQLException {
 
         Contacto contacto = new Contacto(id, nombre, apellidos, email, tlf);
 
