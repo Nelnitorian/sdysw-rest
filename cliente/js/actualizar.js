@@ -10,11 +10,11 @@ function actualizar(){
     http.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             alert("Se ha modificado el contacto correctamente")
-        } else {
+            // Después de mandar la petición volvemos a la página inicial
+            window.location.href="index.html";
+        } else if (this.readyState == 4){
             alert("Se ha producido un error")
         }
-        // Después de mandar la petición volvemos a la página inicial
-        window.location.href="index.html";
     }
     http.send(params)
 }
@@ -33,11 +33,11 @@ function crear(){
     http.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             alert("Se ha creado el contacto correctamente")
-        } else {
+            // Después de mandar la petición volvemos a la página inicial
+            window.location.href="index.html";
+        } else if(this.readyState == 4){
             alert("Se ha producido un error")
         }
-        // Después de mandar la petición volvemos a la página inicial
-        // window.location.href="index.html";
     }
 
     http.send(params)
