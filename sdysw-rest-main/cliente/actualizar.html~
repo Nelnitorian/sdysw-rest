@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Modificación de contacto</title>
+	<script type="text/javascript" src="js/actualizar.js"></script>
+</head>
+<body>
+	<h1 id="titulo">Modificación de contacto</h1>
+	<form name=myText onsubmit="return false">
+		<input type="text" id="nombre" placeholder="Nombre">
+		<input type="text" id="apellidos" placeholder="Apellidos">
+		<input type="text" id="numero" placeholder="Numero">
+		<input type="text" id="email" placeholder="Email">
+		<button id="boton_actualizar">Actualizar</button>
+	</form>
+
+	<!-- Botón para volver a la página principal -->
+	<button onclick="window.location.href='index.html'">Volver</button>
+
+</body>
+</html>
