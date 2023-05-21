@@ -5,11 +5,13 @@
     <title>Agenda de contactos</title>
     <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="css/estilo.css" />
-	<script  type="text/javascript" src="js/inicio.js"></script>
+    <script  type="text/javascript" src="js/inicio.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
   
-	<h1>Proyecto SDySW</h1>
+    <h1>Proyecto SDySW: AGENDA DE CONTACTOS</h1>
+    <input type="text" id="filtro" oninput="filtrar()" placeholder="Buscar por nombre...">
 	<p>A continuación se listarán los contactos</p>
 	
 	<!-- Aqu� se muestra la lista de nombres -->
@@ -22,7 +24,8 @@
 
 	<!-- Aqu� se encuentran los botones para a�adir y eliminar -->
 	<div>
-		<button onclick="agregarContacto()">Añadir</button>
+	  <button onclick="agregarContacto()">Añadir</button>
+	  
 	</div>
 </body>
 
