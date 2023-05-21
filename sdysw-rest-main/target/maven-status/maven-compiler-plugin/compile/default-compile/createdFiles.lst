@@ -1,6 +1,0 @@
-com/contactos/bbdd/ContactosDAO.class
-com/contactos/servidor/Application.class
-com/contactos/bbdd/IContactosDAO.class
-com/contactos/servidor/ContactosController.class
-com/contactos/bbdd/Conexion.class
-com/contactos/common/Contacto.class

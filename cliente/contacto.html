@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Información de Contacto</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+
 	</head>
 	<body>
 		<h1>Información de Contacto</h1>
@@ -13,11 +15,11 @@
 		<p>Email: <span id="email"></span></p>
 
 		<!-- Botón para volver a la página principal -->
-		<button onclick="window.location.href='index.html'">Volver</button>
+		<button id="btn_volver" onclick="window.location.href='index.html'">Volver</button>
 
 		<!-- Botón para editar la información del contacto -->
-		<button onclick="actualizarContacto()">Actualizar</button>
-		<button onclick="eliminarContacto()">Eliminar</button>
+		<button id="btn_actualizar" onclick="actualizarContacto()">Actualizar</button>
+		<button id="btn_eliminar" onclick="eliminarContacto()">Eliminar</button>
 
 		<script type="text/javascript" src="js/contacto.js"></script>
 	</body>
